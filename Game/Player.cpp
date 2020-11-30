@@ -393,12 +393,9 @@ void Player::Update(DWORD dt, vector<LPGAMEENTITY>* coObjects)
 			else if (e->obj->GetType() == EntityType::COIN)
 			{
 				Coin* coin = dynamic_cast<Coin*>(e->obj);
-				if (nx != 0) vx = 0;
-				if (ny != 0) vy = 0;
-				if (e->ny != 0)
+				if (IsCollidingObject(e->obj))
 				{
-					
-
+					coin->isActive = false;
 				}
 			}
 			else if (e->obj->GetType() == EntityType::MUSH)

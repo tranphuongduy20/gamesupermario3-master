@@ -2,6 +2,8 @@
 
 void Coin::Render()
 {
+	if (isActive)
+		return;
 	animationSet->at(0)->Render(nx, x, y);
 	RenderBoundingBox();
 }

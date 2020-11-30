@@ -180,9 +180,17 @@ void PlayScene::PlayerTailAttackEnemy()
 	{
 		if (listEnemies[i]->GetType() == EntityType::GOOMBA)
 		{
-			if (tail->IsCollidingObject(listEnemies[i]))
-				listEnemies[i]->SetState(GOOMBA_STATE_DIE_FLY);
-			//if (player->)
+			auto goomba = dynamic_cast<Goomba*>(listEnemies[i]);
+			if (goomba->id_goomba == GOOMBA_NORMAL)
+			{
+				if (tail->IsCollidingObject(listEnemies[i]))
+					listEnemies[i]->SetState(GOOMBA_STATE_DIE_FLY);
+			}
+			else if (goomba->id_goomba == GOOMBA_RED)
+			{
+				if (tail->IsCollidingObject(listEnemies[i]))
+					listEnemies[i]->SetState(GOOMBA_RED_STATE_NO_WING_DIE_FLY);
+			}
 		}
 		else if (listEnemies[i]->GetType() == EntityType::KOOPA)
 		{
