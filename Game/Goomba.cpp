@@ -288,13 +288,13 @@ void Goomba::SetState(int state)
 		SetSpeed();
 		break;
 	case GOOMBA_RED_STATE_HAS_WING_FLY_LOW:
-		vy = -0.05;
+		//vy = -0.05;
 		SetSpeed();
 		isGrounded = false;
 		break;
 	case GOOMBA_RED_STATE_HAS_WING_FLY_HIGH:
 		isGrounded = false;
-		vy = -0.15;
+		//vy = -0.15;
 		SetSpeed();
 		break;
 	}
