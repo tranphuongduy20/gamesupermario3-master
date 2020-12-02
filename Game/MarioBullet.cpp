@@ -117,7 +117,7 @@ void MarioBullet::Update(DWORD dt, vector<LPGAMEENTITY>* colliable_objects)
 				else if (e->obj->GetType() == EntityType::KOOPA)
 				{
 					Koopa* koopa = dynamic_cast<Koopa*>(e->obj);
-					if (e->nx != 0)
+					/*if (e->nx != 0)
 					{
 						isCollision = 1;
 						vx = 0;
@@ -138,7 +138,7 @@ void MarioBullet::Update(DWORD dt, vector<LPGAMEENTITY>* colliable_objects)
 						{
 							koopa->SetState(KOOPA_STATE_DIE_FLY);
 						}
-					}
+					}*/
 				}
 			}
 		}

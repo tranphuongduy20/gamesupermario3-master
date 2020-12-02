@@ -1,45 +1,59 @@
 #pragma once
 
 #include "Entity.h"
-#include "debug.h"
+#include "Player.h"
 
-#define KOOPA_WALKING_SPEED 0.03f;
 
-#define KOOPA_BBOX_WIDTH		16
-#define KOOPA_BBOX_HEIGHT		25
-#define KOOPA_BBOX_HEIGHT_DIE	15
+#define KOOPAS_WALKING_SPEED 0.03f;
 
-#define KOOPA_STATE_WALKING			100
-#define KOOPA_STATE_DIE				200
-#define KOOPA_STATE_TROOPA_SPIN		300
-#define KOOPA_STATE_DIE_FLY			400
+#define KOOPAS_BBOX_WIDTH 17
+#define KOOPAS_BBOX_HEIGHT 27
+#define KOOPAS_BBOX_HEIGHT_DIE 16
 
-#define KOOPA_ANI_RED_WALKING		0
-#define KOOPA_ANI_RED_DIE			1
-#define KOOPA_ANI_RED_TROOPA_SPIN	2
-#define KOOPA_ANI_RED_DIE_FLY		3
-#define KOOPA_ANI_GREEN_WALKING		4
-#define KOOPA_ANI_GREEN_DIE			5
-#define KOOPA_ANI_GREEN_TROOPA_SPIN	6
-#define KOOPA_ANI_GREEN_DIE_FLY		7
+#define KOOPA_RED 1
+#define KOOPA_GREEN 2
 
-#define KOOPA_RED					50
-#define KOOPA_GREEN					51
-#define KOOPA_GREEN_FLY				52
-#define KOOPA_RED_FLY				53
+#define KOOPA_RED_STATE_WALKING_LEFT	 0
+#define KOOPA_RED_STATE_WALKING_RIGHT	 1
+#define KOOPA_RED_STATE_DIE				 2
+#define KOOPA_RED_STATE_DIE_AND_MOVE	 3
+#define KOOPA_RED_STATE_DIE_UP			 4
+#define KOOPA_RED_STATE_REVIVE_UP		 5
+#define KOOPA_RED_STATE_REVIVE			 6 
+#define KOOPA_RED_STATE_DIE_AND_MOVE_UP	 7
+#define KOOPA_RED_STATE_HOLDING		 	 8
+#define KOOPA_RED_STATE_HOLDING_UP       9
 
+#define KOOPA_GREEN_STATE_WALKING_LEFT	 10
+#define KOOPA_GREEN_STATE_WALKING_RIGHT  11
+#define KOOPA_GREEN_STATE_DIE			 12
+#define KOOPA_GREEN_STATE_DIE_AND_MOVE	 13
+#define KOOPA_GREEN_STATE_REVIVE	     14 
+#define KOOPA_GREEN_STATE_DIE_UP		 15
+#define KOOPA_GREEN_STATE_DIE_AND_MOVE_UP 16
+#define KOOPA_GREEN_STATE_REVIVE_UP		 17
+#define KOOPA_GREEN_STATE_HOLDING		 18
+#define KOOPA_GREEN_STATE_HOLDING_UP	 19
+#define KOOPA_GREEN_STATE_HAS_WING_FLY_LEFT	20
+#define KOOPA_GREEN_STATE_HAS_WING_FLY_RIGHT 21
 
 class Koopa : public Entity
 {
-	int level;
-	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom);
-	virtual void Update(DWORD dt, vector<LPGAMEENTITY>* coObjects);
-	virtual void Render();
 
 public:
-	bool isDeath;
-	Koopa();
+	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom);
+	virtual void Update(ULONGLONG dt, vector<LPGAMEENTITY>* coObjects);
+	virtual void Render();
+	void CheckCollisionWithBrick(vector<LPGAMEENTITY>* coObjects);
+	vector <LPGAMEENTITY> listEffect;
+	ULONGLONG timeToRevive;
+	ULONGLONG timeToFly;
+	bool hitByTail;
+	bool hasWing = true;
+	bool hitByWeapon;
+	int startx, widthtogo;
+	Koopa(Player* mario, int id_Koopa);
+	int last_state;
+	Player* Mario;
 	virtual void SetState(int state);
-	void SetLevel(int l) { level = l; }
 };
-

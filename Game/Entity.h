@@ -57,8 +57,10 @@ public:
 	float vy;
 	int health;
 
+	bool holdthing;
 	bool isdone;
 	int id_goomba;
+	int id_koopa;
 	int nx;
 	int gunDam; // gun damage
 

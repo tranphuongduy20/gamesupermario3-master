@@ -195,7 +195,7 @@ void PlayScene::PlayerTailAttackEnemy()
 		else if (listEnemies[i]->GetType() == EntityType::KOOPA)
 		{
 			if (tail->IsCollidingObject(listEnemies[i]))
-				listEnemies[i]->SetState(KOOPA_STATE_DIE_FLY);
+				listEnemies[i]->SetState(KOOPA_GREEN_STATE_DIE);
 		}
 	}
 }
@@ -486,7 +486,7 @@ void PlayScenceKeyHandler::OnKeyUp(int KeyCode)
 		{
 			player->holdthing->nx = -player->nx;
 			player->isKick = true;
-			player->holdthing->SetState(KOOPA_STATE_TROOPA_SPIN);
+			player->holdthing->SetState(KOOPA_GREEN_STATE_DIE_AND_MOVE);
 		}
 		player->isRun = false;
 		break;
@@ -747,7 +747,7 @@ void PlayScene::_ParseSection_OBJECTS(string line)
 	}
 	case OBJECT_TYPE_KOOPA:
 	{
-		obj = new Koopa();
+		obj = new Koopa(player, 1);
 		obj->SetPosition(x, y);
 		LPANIMATION_SET ani_set = animation_sets->Get(ani_set_id);
 
